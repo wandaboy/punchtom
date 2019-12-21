@@ -26,7 +26,14 @@ class Tom extends FlxSprite
 	{
 		super.update(elapsed);
 
-        if (FlxG.keys.justPressed.SPACE)
+        var justTouched:Bool = false;
+
+		if (FlxG.touches.getFirst() != null)
+		{
+			justTouched = FlxG.touches.getFirst().justPressed;
+		}
+
+		if (FlxG.keys.justPressed.SPACE || justTouched)
         {
             if (curFrame >= 4)
             {

@@ -28,13 +28,22 @@ import flixel.FlxSprite;
 	{
 		super.update(elapsed);
 
-        if (FlxG.keys.justPressed.SPACE)
+        var justTouched:Bool = false;
+        var justReleasedTouch:Bool = false;
+
+		if (FlxG.touches.getFirst() != null)
+		{
+			justTouched = FlxG.touches.getFirst().justPressed;
+            justReleasedTouch = FlxG.touches.getFirst().justReleased;
+		}
+
+		if (FlxG.keys.justPressed.SPACE || justTouched)
         {
             animation.play("punch");
             FlxG.sound.play("assets/sounds/smack"+FlxG.random.int(1, 5)+".mp3");
 
         }
-        if (FlxG.keys.justReleased.SPACE)
+        if (FlxG.keys.justReleased.SPACE || justReleasedTouch)
         {
             animation.play("idle");
 
