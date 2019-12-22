@@ -37,7 +37,7 @@ class PlayState extends FlxState
 			{
 
 				var board = NG.core.scoreBoards.get(8814);// ID found in NG project view
-		    	board.postScore(score); // converts it into cents, for NG scoreboards
+		    	board.postScore(oldHighscore); // converts it into cents, for NG scoreboards
 			}
 		}
 		
