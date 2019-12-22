@@ -33,6 +33,12 @@ class PlayState extends FlxState
 		if (FlxG.save.data.highscore != null)
 		{
 			oldHighscore = FlxG.save.data.highscore;
+			if (NGio.isLoggedIn)
+			{
+
+				var board = NG.core.scoreBoards.get(8814);// ID found in NG project view
+		    	board.postScore(score); // converts it into cents, for NG scoreboards
+			}
 		}
 		
 
