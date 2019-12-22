@@ -15,6 +15,8 @@ class PlayState extends FlxState
 	var format5 = new FlxTextFormat(0xffffff, false, false, null);
 	var _Tom:Tom;
 	var _blood:FlxEmitter;
+
+	var oldHighscore:Int = 0;
 	
 
 	override public function create():Void
@@ -27,6 +29,11 @@ class PlayState extends FlxState
 
 		FlxG.camera.fade(0xFFFFFFFF, 0.1, true);
 
+		FlxG.save.bind("File", "ninjamuffin99");
+		if (FlxG.save.data.highscore != null)
+		{
+			oldHighscore = FlxG.save.data.highscore;
+		}
 		
 
 		 
@@ -85,6 +92,8 @@ class PlayState extends FlxState
 			//score=score+1;
 			trace(score);
 			score += 1;
+			FlxG.save.data.highscore = score;
+			FlxG.save.flush();
 			_txtscore.text = "" + score;
 
 			if (FlxG.random.bool(70))
